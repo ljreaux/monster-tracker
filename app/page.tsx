@@ -25,9 +25,7 @@ export default function Home() {
         </div>
       </StickyHeader>
       <main className="container flex flex-col max-w-2xl gap-8">
-        <h1 className="my-8 text-4xl font-extrabold text-center">
-          Convex + Next.js + Clerk Auth
-        </h1>
+        <Link href={"/add-sighting"}>Report new Sighting</Link>
         <Authenticated>
           <SignedInContent />
         </Authenticated>

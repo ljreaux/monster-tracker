@@ -29,7 +29,7 @@ function SightingCard({
       <CardContent>
         <CardDescription>{sighting.description}</CardDescription>
       </CardContent>
-      <CardFooter className="">
+      <CardFooter className="flex items-center justify-center">
         <Button>More Info</Button>
       </CardFooter>
     </Card>

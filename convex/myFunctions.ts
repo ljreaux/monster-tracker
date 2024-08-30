@@ -18,4 +18,36 @@ export const listSightings = query({
   },
 });
 
+export const createSighting = mutation({
+  args: {
+    name: v.string(),
+    location: v.object({
+      city: v.string(),
+      country: v.string(),
+      state: v.optional(v.string()),
+    }),
+    description: v.string(),
+  },
+  // Mutation implementation.
+  handler: async (ctx, { name, location, description }) => {
+    const identity = await ctx.auth.getUserIdentity();
+    const { tokenIdentifier, name: userName, } = identity!
+    if (identity === null) {
+      throw new Error("Unauthenticated call to mutation");
+    }
+    const sighting = await ctx.db.insert("sightings", {
+      name,
+      location,
+      description,
+      user: {
+        id: tokenIdentifier,
+        name: userName || "Anonymous",
+      },
+      confirmed: false,
+      closestMatch: "",
+
+    });
+    return sighting;
+  },
+})
 
