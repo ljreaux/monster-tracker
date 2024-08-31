@@ -1,7 +1,6 @@
 "use client";
 import countries from "@/lib/countries.json";
 import states from "@/lib/states.json";
-import { Check } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -12,7 +11,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -51,16 +49,20 @@ const formSchema = z.object({
 });
 
 export function MonsterForm() {
-  const { push } = useRouter();
+  const router = useRouter();
   const sighting = useMutation(api.myFunctions.createSighting);
   const [monsterList, setMonsterList] = useState([]);
   useEffect(() => {
     (async () => {
-      const { data: monsterList } = await axios.get(
-        `${DND_API_URL}/api/monsters`
-      );
-      setMonsterList(monsterList.results);
-    })();
+      try {
+        const { data: monsterList } = await axios.get(
+          `${DND_API_URL}/api/monsters`
+        );
+        setMonsterList(monsterList.results);
+      } catch (error) {
+        console.error(error);
+      }
+    })().catch((error) => console.error(error));
   }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -76,12 +78,19 @@ export function MonsterForm() {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof formSchema>) {
     const closestMatch = findClosestMatch(values.name, monsterList);
-    sighting({ ...values, closestMatch });
-    form.reset();
-    toast({ description: "Sighting reported successfully!" });
-    push("/");
+
+    sighting({ ...values, closestMatch })
+      .then(() => {
+        form.reset();
+        toast({ description: "Sighting reported successfully!" });
+        router.push("/");
+      })
+      .catch((error) => {
+        console.error(error);
+        toast({ description: "Error reporting sighting" });
+      });
   }
 
   return (

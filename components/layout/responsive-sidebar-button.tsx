@@ -15,7 +15,6 @@ export const ResponsiveSidebarButton = fr<HTMLButtonElement, ButtonProps>(
     return (
       <>
         <Button
-          variant="secondary"
           variant="ghost"
           size="icon"
           onClick={() => setShowSidebar(!showSidebar)}
@@ -23,9 +22,9 @@ export const ResponsiveSidebarButton = fr<HTMLButtonElement, ButtonProps>(
           {...props}
         >
           {showSidebar ? (
-            <Cross2Icon className="h-6 w-6" />
+            <Cross2Icon className="w-6 h-6" />
           ) : (
-            <HamburgerMenuIcon className="h-6 w-6" />
+            <HamburgerMenuIcon className="w-6 h-6" />
           )}
         </Button>
         {showSidebar ? (
