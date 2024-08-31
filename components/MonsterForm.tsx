@@ -72,7 +72,7 @@ export function MonsterForm() {
       location: {
         city: "",
         country: "US",
-        state: "Alabama",
+        state: "",
       },
       description: "",
     },
