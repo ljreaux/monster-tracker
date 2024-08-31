@@ -41,7 +41,7 @@ This app was built using:
 1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/yourusername/monster-tracker.git
+git clone https://github.com/ljreaux/monster-tracker
 cd monster-tracker
 ```
 
@@ -71,19 +71,18 @@ This project was built within a limited timeframe as part of the Learn With Jaso
 
 If you want to contribute:
 
-    1.	Fork the project.
-    2.	Create your feature branch (git checkout -b feature/YourFeature).
-    3.	Commit your changes (git commit -m 'Add some feature').
-    4.	Push to the branch (git push origin feature/YourFeature).
-    5.	Open a pull request.
+1. Fork the project.
+2. Create your feature branch (git checkout -b feature/YourFeature).
+3. Commit your changes (git commit -m 'Add some feature').
+4. Push to the branch (git push origin feature/YourFeature).
+5. Open a pull request.
 
 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 Acknowledgements
-
-    •	Thanks to Jason Lengstorf for organizing this hackathon and providing an inspiring prompt.
-    •	Special shoutout to the developers behind Convex, Clerk, and the D&D 5E API for the awesome tools and resources.
+- Thanks to Jason Lengstorf for organizing this hackathon and providing an inspiring prompt.
+- Special shoutout to the developers behind Convex, Clerk, and the D&D 5E API for the awesome tools and resources.
 
 Happy monster tracking!
