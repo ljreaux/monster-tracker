@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 
 function SightingCard({
   sighting,
@@ -21,6 +22,7 @@ function SightingCard({
     _creationTime: number;
   };
 }) {
+  const router = useRouter();
   return (
     <Card className="text-center">
       <CardHeader>
@@ -30,7 +32,9 @@ function SightingCard({
         <CardDescription>{sighting.description}</CardDescription>
       </CardContent>
       <CardFooter className="flex items-center justify-center">
-        <Button>More Info</Button>
+        <Button onClick={() => router.push(`/${sighting._id}`)}>
+          More Info
+        </Button>
       </CardFooter>
     </Card>
   );

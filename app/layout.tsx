@@ -1,9 +1,11 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Anton } from "next/font/google";
 import { ConvexClientProvider } from "./ConvexClientProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+import Header from "@/components/Header";
+
+const anton = Anton({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "My App Title",
@@ -17,8 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <ConvexClientProvider>{children}</ConvexClientProvider>
+      <body className={anton.className}>
+        <ConvexClientProvider>
+          <Header />
+          {children}
+        </ConvexClientProvider>
       </body>
     </html>
   );

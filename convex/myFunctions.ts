@@ -27,9 +27,10 @@ export const createSighting = mutation({
       state: v.optional(v.string()),
     }),
     description: v.string(),
+    closestMatch: v.string(),
   },
   // Mutation implementation.
-  handler: async (ctx, { name, location, description }) => {
+  handler: async (ctx, { name, location, description, closestMatch }) => {
     const identity = await ctx.auth.getUserIdentity();
     const { tokenIdentifier, name: userName, } = identity!
     if (identity === null) {
@@ -44,10 +45,24 @@ export const createSighting = mutation({
         name: userName || "Anonymous",
       },
       confirmed: false,
-      closestMatch: "",
+      closestMatch,
 
     });
     return sighting;
   },
 })
 
+export const getIndividualSighting = query({
+  args: {
+    id: v.string(),
+  },
+  // Query implementation.
+  handler: async (ctx, { id }) => {
+
+    const sightings = await ctx.db
+      .query("sightings")
+      // Ordered by _creationTime, return most recent
+      .order("desc").filter((q) => q.eq(q.field("_id"), id)).first();
+    return sightings
+  },
+});

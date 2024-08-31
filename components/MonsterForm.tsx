@@ -5,6 +5,8 @@ import { Check } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import axios from "axios";
+import { closestMatch } from "closest-match";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -26,6 +28,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "./ui/textarea";
+import { useEffect, useState } from "react";
+import { DND_API_URL } from "@/app/page";
+import { api } from "@/convex/_generated/api";
+import { useMutation } from "convex/react";
+import { toast } from "./ui/use-toast";
+import { useRouter } from "next/navigation";
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Username must be at least 2 characters.",
@@ -43,6 +51,18 @@ const formSchema = z.object({
 });
 
 export function MonsterForm() {
+  const { push } = useRouter();
+  const sighting = useMutation(api.myFunctions.createSighting);
+  const [monsterList, setMonsterList] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const { data: monsterList } = await axios.get(
+        `${DND_API_URL}/api/monsters`
+      );
+      setMonsterList(monsterList.results);
+    })();
+  }, []);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -56,8 +76,12 @@ export function MonsterForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const closestMatch = findClosestMatch(values.name, monsterList);
+    sighting({ ...values, closestMatch });
+    form.reset();
+    toast({ description: "Sighting reported successfully!" });
+    push("/");
   }
 
   return (
@@ -170,4 +194,17 @@ export function MonsterForm() {
       </form>
     </Form>
   );
+}
+
+function findClosestMatch(
+  input: string,
+  matchArray: { index: string; name: string; url: string }[]
+) {
+  const nameArray = matchArray.map((item) => item.name.toLowerCase());
+  const inputString = input.toLowerCase();
+
+  const match = closestMatch(inputString, nameArray);
+  const found = matchArray.find((item) => item.name.toLowerCase() === match);
+  if (found) return found.url;
+  else return "";
 }
