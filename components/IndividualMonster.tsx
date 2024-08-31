@@ -58,7 +58,7 @@ function IndividualMonster({
           </div>
           <div>
             Reported on: {new Date(sighting._creationTime).toLocaleString()}{" "}
-            <span className="text-secondary">by {sighting.user.name}</span>
+            <span className="text-destructive">by {sighting.user.name}</span>
           </div>
         </CardDescription>
       </CardHeader>
@@ -78,7 +78,13 @@ function IndividualMonster({
               className="max-w-[400px] self-center"
             />
           )}
-          <Button onClick={() => setPossibleMonster(null)}>Close</Button>
+          <Button
+            variant="secondary"
+            onClick={() => setPossibleMonster(null)}
+            className="m-4"
+          >
+            Close
+          </Button>
         </div>
       )}
     </Card>

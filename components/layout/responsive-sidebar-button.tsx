@@ -15,6 +15,7 @@ export const ResponsiveSidebarButton = fr<HTMLButtonElement, ButtonProps>(
     return (
       <>
         <Button
+          variant="secondary"
           variant="ghost"
           size="icon"
           onClick={() => setShowSidebar(!showSidebar)}

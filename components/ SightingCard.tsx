@@ -32,7 +32,10 @@ function SightingCard({
         <CardDescription>{sighting.description}</CardDescription>
       </CardContent>
       <CardFooter className="flex items-center justify-center">
-        <Button onClick={() => router.push(`/${sighting._id}`)}>
+        <Button
+          variant="secondary"
+          onClick={() => router.push(`/${sighting._id}`)}
+        >
           More Info
         </Button>
       </CardFooter>

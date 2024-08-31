@@ -14,7 +14,7 @@ import SightingCard from "@/components/ SightingCard";
 export default function Home() {
   return (
     <>
-      <main className="container flex flex-col max-w-2xl gap-8">
+      <main className="container flex flex-col max-w-2xl gap-8 py-8">
         <Authenticated>
           <Link href={"/add-sighting"}>Report new Sighting</Link>
           <SignedInContent />
@@ -31,6 +31,10 @@ function SignedInContent() {
   const sightings = useQuery(api.myFunctions.listSightings);
 
   return (
-    <>{sightings?.map((sighting) => <SightingCard sighting={sighting} />)}</>
+    <>
+      {sightings?.map((sighting) => (
+        <SightingCard key={sighting._creationTime} sighting={sighting} />
+      ))}
+    </>
   );
 }

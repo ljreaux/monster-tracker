@@ -4,6 +4,7 @@ import { Anton } from "next/font/google";
 import { ConvexClientProvider } from "./ConvexClientProvider";
 
 import Header from "@/components/Header";
+import { ThemeProvider } from "./theme-provider";
 
 const anton = Anton({ subsets: ["latin"], weight: "400" });
 
@@ -20,10 +21,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={anton.className}>
-        <ConvexClientProvider>
-          <Header />
-          {children}
-        </ConvexClientProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ConvexClientProvider>
+            <Header />
+            {children}
+          </ConvexClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

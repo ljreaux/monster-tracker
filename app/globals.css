@@ -34,37 +34,34 @@
 
     --radius: 0.5rem;
   }
+  .dark {
+    --background: 280, 9%, 20%;
+    --foreground: 120, 100%, 100%;
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background: 280, 9%, 20%;
-      --foreground: 120, 100%, 100%;
+    --card: 280, 9%, 20%;
+    --card-foreground: 120, 100%, 100%;
 
-      --card: 280, 9%, 20%;
-      --card-foreground: 120, 100%, 100%;
+    --popover: 280, 9%, 20%;
+    --popover-foreground: 120, 100%, 100%;
 
-      --popover: 280, 9%, 20%;
-      --popover-foreground: 120, 100%, 100%;
+    --primary: 120, 100%, 100%;
+    --primary-foreground: 244, 50%, 65%;
 
-      --primary: 120, 100%, 100%;
-      --primary-foreground: 244, 50%, 65%;
+    --secondary: 244, 50%, 65%;
+    --secondary-foreground: 120, 100%, 100%;
 
-      --secondary: 0, 70%, 61%;
-      --secondary-foreground: 120, 100%, 100%;
+    --muted: 244, 50%, 65%;
+    --muted-foreground: 148, 30%, 46%;
 
-      --muted: 0, 70%, 61%;
-      --muted-foreground: 148, 30%, 46%;
+    --accent: 244, 50%, 65%;
+    --accent-foreground: 120, 100%, 100%;
 
-      --accent: 0, 70%, 61%;
-      --accent-foreground: 120, 100%, 100%;
+    --destructive: 0, 70%, 61%;
+    --destructive-foreground: 120, 100%, 100%;
 
-      --destructive: 0, 70%, 61%;
-      --destructive-foreground: 120, 100%, 100%;
-
-      --border: 0, 70%, 61%;
-      --input: 0, 70%, 61%;
-      --ring: 240 4.9% 83.9%;
-    }
+    --border: 244, 50%, 65%;
+    --input: 244, 50%, 65%;
+    --ring: 240 4.9% 83.9%;
   }
 }
 

@@ -86,7 +86,7 @@ export function MonsterForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="p-8 space-y-8">
         <FormField
           control={form.control}
           name="name"
@@ -100,54 +100,13 @@ export function MonsterForm() {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="location.country"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Country</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent className="overflow-y-auto max-h-[10rem]">
-                  <SelectGroup>
-                    {countries.map((country) => (
-                      <SelectItem
-                        key={country.countryCode}
-                        value={country.countryCode}
-                      >{`${country.country} ${country.flag}`}</SelectItem>
-                    ))}
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="location.city"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>City</FormLabel>
-              <FormControl>
-                <Input placeholder="LA..." {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        {form.getValues("location.country") === "US" && (
+        <div className="flex justify-between w-full">
           <FormField
             control={form.control}
-            name="location.state"
+            name="location.country"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>State</FormLabel>
+                <FormLabel>Country</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
@@ -159,10 +118,11 @@ export function MonsterForm() {
                   </FormControl>
                   <SelectContent className="overflow-y-auto max-h-[10rem]">
                     <SelectGroup>
-                      {states.map((state) => (
-                        <SelectItem key={state} value={state}>
-                          {state}
-                        </SelectItem>
+                      {countries.map((country) => (
+                        <SelectItem
+                          key={country.countryCode}
+                          value={country.countryCode}
+                        >{`${country.country} ${country.flag}`}</SelectItem>
                       ))}
                     </SelectGroup>
                   </SelectContent>
@@ -172,7 +132,54 @@ export function MonsterForm() {
               </FormItem>
             )}
           />
-        )}
+          <div className="flex gap-4">
+            <FormField
+              control={form.control}
+              name="location.city"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>City</FormLabel>
+                  <FormControl>
+                    <Input placeholder="LA..." {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {form.getValues("location.country") === "US" && (
+              <FormField
+                control={form.control}
+                name="location.state"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>State</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className="overflow-y-auto max-h-[10rem]">
+                        <SelectGroup>
+                          {states.map((state) => (
+                            <SelectItem key={state} value={state}>
+                              {state}
+                            </SelectItem>
+                          ))}
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
+          </div>
+        </div>
         <FormField
           control={form.control}
           name="description"
@@ -190,7 +197,9 @@ export function MonsterForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button variant="secondary" type="submit">
+          Submit
+        </Button>
       </form>
     </Form>
   );

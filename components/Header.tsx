@@ -7,6 +7,7 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import { Creepster } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { ModeToggle } from "./mode-toggle";
 const creepster = Creepster({ subsets: ["latin"], weight: "400" });
 
 function Header() {
@@ -15,7 +16,7 @@ function Header() {
       <div className="flex items-center justify-between">
         <Link
           href={"/"}
-          className={cn(creepster.className, "text-6xl text-secondary")}
+          className={cn(creepster.className, "text-6xl text-destructive")}
         >
           {" "}
           Monster Tracker
@@ -31,6 +32,7 @@ export default Header;
 function SignInAndSignUpButtons() {
   return (
     <div className="flex gap-4">
+      <ModeToggle />
       <Authenticated>
         <UserButton afterSignOutUrl="#" />
       </Authenticated>
@@ -39,7 +41,7 @@ function SignInAndSignUpButtons() {
           <Button variant="ghost">Sign in</Button>
         </SignInButton>
         <SignUpButton mode="modal">
-          <Button>Sign up</Button>
+          <Button variant="secondary">Sign up</Button>
         </SignUpButton>
       </Unauthenticated>
     </div>
