@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { DND_API_URL } from "@/app/page";
+import { DND_API_URL } from "@/lib/API";
 import axios from "axios";
 import { Button } from "./ui/button";
 

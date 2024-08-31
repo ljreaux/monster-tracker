@@ -29,7 +29,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "./ui/textarea";
 import { useEffect, useState } from "react";
-import { DND_API_URL } from "@/app/page";
+import { DND_API_URL } from "@/lib/API";
 import { api } from "@/convex/_generated/api";
 import { useMutation } from "convex/react";
 import { toast } from "./ui/use-toast";

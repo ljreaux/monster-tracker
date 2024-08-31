@@ -1,5 +1,4 @@
 "use client";
-export const DND_API_URL = "https://www.dnd5eapi.co";
 import { Button } from "@/components/ui/button";
 import {
   Authenticated,
