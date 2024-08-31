@@ -9,8 +9,22 @@ import { ThemeProvider } from "./theme-provider";
 const anton = Anton({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
-  title: "My App Title",
-  description: "My app description",
+  title: "Monster Tracker",
+  description:
+    "Track and record your monster sightings with detailed information and D&D 5E data integration.",
+  openGraph: {
+    title: "Monster Tracker",
+    description:
+      "Log your monster sightings, view detailed information, and enhance your records with D&D 5E data.",
+    url: "https://yourdomain.com/monster-tracker", // Replace with your actual URL
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Monster Tracker",
+    description:
+      "Track your monster sightings with detailed information and D&D 5E integration.",
+  },
 };
 
 export default function RootLayout({
